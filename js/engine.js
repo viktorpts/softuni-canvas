@@ -93,6 +93,15 @@ function createRenderer(ctx, imgCache) {
         ctx.fillRect(x, y, w, h);
     }
 
+    function circle(x, y, radius, color = 'red') {
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.moveTo(x, y);
+        ctx.ellipse(x, y, radius, radius, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+    }
+
     function text(content, x, y, color = 'black') {
         ctx.fillStyle = color;
         ctx.fillText(content, x, y);
@@ -103,6 +112,7 @@ function createRenderer(ctx, imgCache) {
         grid,
         image,
         rect,
+        circle,
         text
     };
 }

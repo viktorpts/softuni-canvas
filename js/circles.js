@@ -98,18 +98,6 @@ window.addEventListener('load', () => {
             drawCircle(ctx, circle.position.x, circle.position.y, radius);
         }
     }
-
-    document.querySelector('#clearBtn').addEventListener('click', () => {
-        ctx.clearRect(30, 30, 500, 300);
-    });
-
-    document.querySelector('#drawBtn').addEventListener('click', () => {
-        // 1280, 780
-        const source = document.querySelector('img');
-        ctx.drawImage(source, 120, 120, 640, 640, 50, 50, 200, 200);
-    });
-
-    document.querySelector('#moveBtn').addEventListener('click', () => { });
 });
 
 function inCircle(x, y, circleX, circleY, radius) {
@@ -169,38 +157,4 @@ function drawGrid(ctx) {
         ctx.closePath();
     }
 
-}
-
-/**
- * 
- * @param {CanvasRenderingContext2D} ctx 
- */
-function draw(ctx) {
-    // Draw blue rectangle
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(20, 20, 100, 100);
-
-    // Draw line
-    ctx.lineWidth = 10;
-    ctx.lineJoin = "round";
-    ctx.lineCap = "square";
-    // Line from 300,450 to 500,450
-    ctx.strokeStyle = 'green';
-    ctx.beginPath();
-    ctx.moveTo(300, 450);
-    ctx.lineTo(500, 450);
-    ctx.lineTo(500, 100);
-    ctx.lineTo(400, 350);
-    ctx.stroke();
-    ctx.closePath();
-    ctx.fill();
-
-    // Line from 400,350 to 200,400
-    ctx.strokeStyle = 'rgb(255, 0, 255)';
-    ctx.beginPath();
-    ctx.moveTo(400, 350);
-    ctx.lineTo(200, 400);
-    ctx.stroke();
-
-    ctx.closePath();
 }
