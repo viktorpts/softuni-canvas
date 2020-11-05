@@ -1,12 +1,12 @@
 # SoftUni Canvas
 
-This is a simple app, demonstrating the use of HTML5 canvas. There is an engine that exposes several drawing methods and event listeners. All of your logic can be places inside `./js/app.js` and use the provided methods to visualize results.
+This is a simple app, demonstrating the use of HTML5 canvas. There is an engine that exposes several drawing methods and event listeners. All of your logic can be placed inside `./js/app.js` and use the provided methods to visualize results.
 
 ## Installation and Usage
 [Read the instructions](https://github.com/viktorpts/softuni-canvas/wiki) on how to install and use the project!
 
 ## Quick Guide
-Place your code inside `start()` function of `./js/app.js`. Use the following commands:
+Place your code inside the `start()` function of `./js/app.js`. Use the following commands:
 
 ```javascript
 // CLear the canvas (white screen):
