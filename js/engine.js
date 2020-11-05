@@ -21,23 +21,33 @@ window.addEventListener('load', async () => {
         instance.onClick(x, y);
     });
 
-    const keys = {};
     document.addEventListener('keydown', (ev) => {
-        keys[ev.code] = true;
+        instance.onKey(ev.code, true);
     });
     document.addEventListener('keyup', (ev) => {
-        keys[ev.code] = false;
+        instance.onKey(ev.code, false);
     });
 
-    function handleKeyboard() {
-        if (Object.values(keys).reduce((p, c) => p || c, false)) {
-            instance.onKey(keys);
-        }
-        requestAnimationFrame(handleKeyboard);
-    }
-    requestAnimationFrame(handleKeyboard);
-
     instance.start();
+
+    if (instance.hasOwnProperty('render')) {
+        let lastTime = 0;
+        let delta = 0;
+        const tick = instance.tick || (() => {});
+        main();
+
+        function main(time = 0) {
+            delta += (time - lastTime);
+            lastTime = time;
+            if (delta > 1000) { delta = 20; }
+            while (delta > 20) {
+                delta -= 20;
+                tick();
+            }
+            instance.render();
+            requestAnimationFrame(main);
+        }
+    }
 });
 
 
@@ -53,32 +63,32 @@ function createRenderer(ctx, imgCache) {
             ctx.beginPath();
             ctx.moveTo(0, y);
             ctx.lineTo(800, y);
-    
+
             if (y % 200 == 0) {
                 ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
             } else {
                 ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
             }
-    
+
             ctx.stroke();
             ctx.closePath();
         }
-    
+
         for (let x = 50; x < 800; x += 50) {
             ctx.beginPath();
             ctx.moveTo(x, 0);
             ctx.lineTo(x, 600);
-    
+
             if (x % 200 == 0) {
                 ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
             } else {
                 ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
             }
-    
+
             ctx.stroke();
             ctx.closePath();
         }
-    
+
     }
 
     function image(fileName, x, y, scale = 1) {
