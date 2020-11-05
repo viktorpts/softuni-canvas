@@ -10,16 +10,21 @@ export function config() {
 }
 
 export function app(draw) {
-    const catLoc = {
+    const catPosition = {
         x: 300,
         y: 300
     };
     const mice = [];
 
     function drawScene() {
+        // Clear previous frame and draw grid
         draw.clear();
         draw.grid();
-        draw.image('cat.png', catLoc.x, catLoc.y, 0.25);
+
+        // Get cat coordinates and draw on scene at 25% scale
+        draw.image('cat.png', catPosition.x, catPosition.y, 0.25);
+
+        // Iterate mice array and draw each mouse at 10% scale
         for (let mouse of mice) {
             draw.image('mouse.png', mouse.x, mouse.y, 0.1);
         }
@@ -34,7 +39,7 @@ export function app(draw) {
     function onClick(x, y) {
         console.log(x, y);
 
-        mice.push({ x: x - 50, y: y - 25 });
+        mice.push({ x: x, y: y });
         drawScene();
     }
 
@@ -43,15 +48,15 @@ export function app(draw) {
         console.log(key, pressed);
 
         if (key == 'ArrowUp' && pressed) {
-            catLoc.y -= 5;
+            catPosition.y -= 5;
         } else if (key == 'ArrowDown' && pressed) {
-            catLoc.y += 5;
+            catPosition.y += 5;
         }
 
         if (key == 'ArrowLeft' && pressed) {
-            catLoc.x -= 5;
+            catPosition.x -= 5;
         } else if (key == 'ArrowRight' && pressed) {
-            catLoc.x += 5;
+            catPosition.x += 5;
         }
 
         drawScene();

@@ -33,7 +33,7 @@ window.addEventListener('load', async () => {
     if (instance.hasOwnProperty('render')) {
         let lastTime = 0;
         let delta = 0;
-        const tick = instance.tick || (() => {});
+        const tick = instance.tick || (() => { });
         main();
 
         function main(time = 0) {
@@ -95,7 +95,7 @@ function createRenderer(ctx, imgCache) {
         const img = imgCache[fileName];
         const w = img.width * scale;
         const h = img.height * scale;
-        ctx.drawImage(imgCache[fileName], x, y, w, h);
+        ctx.drawImage(imgCache[fileName], x - (img.width * scale * 0.5), y - (img.height * scale * 0.5), w, h);
     }
 
     function rect(x, y, w, h, color = 'black') {
